@@ -47,7 +47,7 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
     	}*/
     	strategies.add(new StartDungeon());
     	strategies.add(new GetRock());
-    	strategies.add(new getOrb());
+    	strategies.add(new GetOrb());
     	strategies.add(new SummonBoss());
     	strategies.add(new FightBoss());
         provide(strategies);
