@@ -60,10 +60,10 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 	    long minutes = millis / 60000L;
 	    millis -= minutes * 60000L;
 	    long seconds = millis / 1000L;
-		shadowedString(g2,"Runtime: "+hours+":"+minutes+":"+seconds, 560,400, Color.white);
-		shadowedString(g2,"Wins(/hr): "+gamesWon+"("+winsHr+")", 560, 415, Color.white);
-		shadowedString(g2,"Points(/hr): "+gamesWon*10+"("+winsHr*10+")", 560, 430, Color.white);
-		shadowedString(g2,"PPestcontrol",640,463, Color.white);
+		shadowedString(g2,"Runtime: "+hours+":"+minutes+":"+seconds, 560,415, Color.white);
+		//shadowedString(g2,"Wins(/hr): "+gamesWon+" ("+winsHr+")", 560, 415, Color.white);
+		shadowedString(g2,"Points(/hr): "+gamesWon*10+" ("+winsHr*10+")", 560, 430, Color.white);
+		shadowedString(g2,"PPestcontrol",650,463, Color.white);
 		}
 	public void shadowedString(Graphics g, String text, int x, int y, Color mainColor){
 		g.setColor(Color.black);

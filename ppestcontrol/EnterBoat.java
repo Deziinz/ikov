@@ -14,8 +14,7 @@ public class EnterBoat implements Strategy {
 	public boolean activate() {
 		if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID).length > 0){
 			if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID)[0] != null){
-				if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID)[0].distanceTo() < 6 && 
-						!PPestcontrol.inArea(2658, 2637, 2665, 2643))
+				if(!PPestcontrol.inArea(2658, 2637, 2665, 2643))
 						return true;
 			}
 		}
