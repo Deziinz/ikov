@@ -2,16 +2,25 @@ package ikov.ppestcontrol;
 
 import org.parabot.environment.api.utils.Random;
 import org.parabot.environment.api.utils.Time;
+import org.parabot.environment.scripts.framework.SleepCondition;
 import org.parabot.environment.scripts.framework.Strategy;
 import org.rev317.min.api.methods.Menu;
-import org.rev317.min.api.methods.Players;
+//import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.methods.SceneObjects;
 import org.rev317.min.api.wrappers.SceneObject;
 
 public class EnterBoat implements Strategy {
 
 	public boolean activate() {
-		return Players.getMyPlayer().getLocation().getY() == 2639 && Players.getMyPlayer().getLocation().getX() == 2657;
+		if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID).length > 0){
+			if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID)[0] != null){
+				if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID)[0].distanceTo() < 6 && 
+						!PPestcontrol.inArea(2658, 2637, 2665, 2643))
+						return true;
+			}
+		}
+		//return Players.getMyPlayer().getLocation().getY() == 2639 && Players.getMyPlayer().getLocation().getX() == 2657;
+		return false;
 	}
 	public void execute() {
 		//System.out.println("EnterBoat");
@@ -20,7 +29,11 @@ public class EnterBoat implements Strategy {
 		if(gangplank.length > 0){
 			if(gangplank[0] != null){
 				Menu.sendAction(502, gangplank[0].hashCode(), gangplank[0].getLocalRegionX(), gangplank[0].getLocalRegionY(), PPestcontrol.GANGPLANK_ID, 3);
-				Time.sleep(1200);
+				Time.sleep(new SleepCondition(){
+					public boolean isValid() {
+						return PPestcontrol.inArea(2658, 2637, 2665, 2643);
+					}
+				},6000);
 				PPestcontrol.randomizedPath = Random.between(0, 4);
 				if(Random.between(0, 2)==1
 						&&!PPestcontrol.praying){

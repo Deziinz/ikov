@@ -12,6 +12,7 @@ import org.parabot.environment.scripts.ScriptManifest;
 import org.parabot.environment.scripts.framework.Strategy;
 import org.rev317.min.api.events.MessageEvent;
 import org.rev317.min.api.events.listeners.MessageListener;
+import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.wrappers.Tile;
 
 
@@ -74,6 +75,13 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 		String msg = m.getMessage();
 		if(msg.contains("no points"))
 			gamesLost++;
+	}
+	
+	public static boolean inArea(int x, int y, int x2, int y2){
+		return Players.getMyPlayer().getX() <= x2
+				&& Players.getMyPlayer().getX() >= x
+				&& Players.getMyPlayer().getY() <= y2
+				&& Players.getMyPlayer().getY() >= y;
 	}
 
 }
