@@ -16,7 +16,7 @@ import org.rev317.min.api.methods.Skill;
 import org.rev317.min.api.wrappers.Tile;
 
 
-@ScriptManifest(author="Agrodon", category = Category.OTHER, description="Dungeoneering - Rushes C2", name="Pdungeoneering", servers={"ikov"}, version=1.0)
+@ScriptManifest(author="Agrodon", category = Category.OTHER, description="Dungeoneering - Rushes C2", name="PDungeoneering", servers={"ikov"}, version=1.0)
 public class PDungeoneering extends Script implements Paintable, MessageListener{
 	private final ArrayList<Strategy> strategies = new ArrayList<Strategy>();
 
