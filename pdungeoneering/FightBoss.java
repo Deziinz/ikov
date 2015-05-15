@@ -23,8 +23,8 @@ public class FightBoss implements Strategy {
 	public void execute() {
 		//System.out.println("Fighting boss");
 		try{
-			if(Npcs.getNearest().length > 0)
-				System.out.println("Nearest NPC: "+Npcs.getNearest()[0].getLocation());
+			//if(Npcs.getNearest().length > 0)
+			//	System.out.println("Nearest NPC: "+Npcs.getNearest()[0].getLocation());
 			for(int i = 0; i < PDungeoneering.BOSS_IDS.length; i++){
 				if (Npcs.getNearest(PDungeoneering.BOSS_IDS)[i] != null){
 					final Npc boss = Npcs.getNearest(PDungeoneering.BOSS_IDS)[i];
