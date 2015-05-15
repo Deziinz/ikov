@@ -5,7 +5,7 @@ import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 import org.parabot.environment.scripts.framework.Strategy;
 import org.rev317.min.api.methods.Menu;
-//import org.rev317.min.api.methods.Players;
+import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.methods.SceneObjects;
 import org.rev317.min.api.wrappers.SceneObject;
 
@@ -14,7 +14,8 @@ public class EnterBoat implements Strategy {
 	public boolean activate() {
 		if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID).length > 0){
 			if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID)[0] != null){
-				if(!PPestcontrol.inArea(2658, 2637, 2665, 2643))
+				if(!PPestcontrol.inArea(2658, 2637, 2665, 2643) 
+						&& Players.getMyPlayer().getLocation().getY() > 2630)
 						return true;
 			}
 		}
