@@ -17,7 +17,7 @@ import org.rev317.min.api.wrappers.Tile;
 
 
 @ScriptManifest(author="Agrodon", category = Category.OTHER, description="Dungeoneering - Rushes C2", name="Pdungeoneering", servers={"ikov"}, version=1.0)
-public class Pdungeoneering extends Script implements Paintable, MessageListener{
+public class PDungeoneering extends Script implements Paintable, MessageListener{
 	private final ArrayList<Strategy> strategies = new ArrayList<Strategy>();
 
     public static boolean gotRock = false;
@@ -73,7 +73,7 @@ public class Pdungeoneering extends Script implements Paintable, MessageListener
 		shadowedString(g2,"Deaths(/hr): "+deathCount+"("+deathHr+")", 560, 415);
 		shadowedString(g2,"Dungeons(/hr): "+dungCount+"("+dungHr+")", 560, 430);
 		shadowedString(g2,"Exp gained(/hr): "+ (expGained<100000 ? expGained : expGained/1000 + "k")+"("+(expHr<100000 ? expHr : expHr/1000 + "k")+")", 560, 445);
-		shadowedString(g2,"Pdungeoneering",640,463);
+		shadowedString(g2,"PDungeoneering",640,463);
 	}
 	
 	public void shadowedString(Graphics g, String text, int x, int y){

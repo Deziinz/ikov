@@ -11,8 +11,8 @@ public class FightBoss implements Strategy {
 	private int nulledBossCheck = 0;
 	
 	public boolean activate() {
-		for(int i = 0; i < Pdungeoneering.BOSS_IDS.length; i++){
-			if (Npcs.getNearest(Pdungeoneering.BOSS_IDS[i]) != null){
+		for(int i = 0; i < PDungeoneering.BOSS_IDS.length; i++){
+			if (Npcs.getNearest(PDungeoneering.BOSS_IDS[i]) != null){
 				return true;
 			}
 		}
@@ -25,19 +25,19 @@ public class FightBoss implements Strategy {
 		try{
 			if(Npcs.getNearest().length > 0)
 				System.out.println("Nearest NPC: "+Npcs.getNearest()[0].getLocation());
-			for(int i = 0; i < Pdungeoneering.BOSS_IDS.length; i++){
-				if (Npcs.getNearest(Pdungeoneering.BOSS_IDS)[i] != null){
-					final Npc boss = Npcs.getNearest(Pdungeoneering.BOSS_IDS)[i];
+			for(int i = 0; i < PDungeoneering.BOSS_IDS.length; i++){
+				if (Npcs.getNearest(PDungeoneering.BOSS_IDS)[i] != null){
+					final Npc boss = Npcs.getNearest(PDungeoneering.BOSS_IDS)[i];
 					if(!boss.isInCombat()){
 						boss.interact(1);
 						Time.sleep(new SleepCondition(){
 							public boolean isValid() {
-								return boss.isInCombat() || Npcs.getNearest(Pdungeoneering.THOK_ID).length > 0;
+								return boss.isInCombat() || Npcs.getNearest(PDungeoneering.THOK_ID).length > 0;
 							}
 						},3600);
 					}
 					nulledBossCheck = 0;
-					//System.out.println("Boss: "+i+" ("+Pdungeoneering.BOSS_IDS[i]+ ") "+boss.getLocation()+" animation: "+boss.getAnimation() + "  Health: "+boss.getHealth()+"%");
+					//System.out.println("Boss: "+i+" ("+PDungeoneering.BOSS_IDS[i]+ ") "+boss.getLocation()+" animation: "+boss.getAnimation() + "  Health: "+boss.getHealth()+"%");
 				}
 			}
 		}catch(Exception e){

@@ -12,9 +12,9 @@ import org.rev317.min.api.wrappers.Tile;
 public class getOrb implements Strategy {
 
 	public boolean activate() {
-		return ((Pdungeoneering.gotRock
+		return ((PDungeoneering.gotRock
 				&& Players.getMyPlayer().getLocation().getY() > 9000))
-				&& !Pdungeoneering.gotOrb;
+				&& !PDungeoneering.gotOrb;
 	}
 
 	public void execute() {
@@ -23,7 +23,7 @@ public class getOrb implements Strategy {
 			Menu.sendAction(502, 1079596979, 51, 47, 357, 3);//Search crate
 			Time.sleep(new SleepCondition(){
 				public boolean isValid() {
-					return Inventory.contains(Pdungeoneering.ORB_ID);
+					return Inventory.contains(PDungeoneering.ORB_ID);
 				}
 			},7200);
 		} else {
@@ -36,13 +36,13 @@ public class getOrb implements Strategy {
 			}
 			Time.sleep(1200);
 		}
-		if(Inventory.contains(Pdungeoneering.ORB_ID))
-			Pdungeoneering.gotOrb = true;
+		if(Inventory.contains(PDungeoneering.ORB_ID))
+			PDungeoneering.gotOrb = true;
 	}
 	
 	/*public boolean canSeeCrate(){
 		for(SceneObject obj : SceneObjects.getAllSceneObjects()){
-			if(obj.getId() == Pdungeoneering.CRATE_ID && obj.getLocation() == Pdungeoneering.CRATE_TILE)
+			if(obj.getId() == PDungeoneering.CRATE_ID && obj.getLocation() == PDungeoneering.CRATE_TILE)
 				return true;
 		}
 		return false;

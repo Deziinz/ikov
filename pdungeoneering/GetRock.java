@@ -12,17 +12,17 @@ import org.rev317.min.api.wrappers.Tile;
 public class GetRock implements Strategy {
 
 	public boolean activate() {
-		return Players.getMyPlayer().getLocation().getY() > 9000 && !Pdungeoneering.gotRock;
+		return Players.getMyPlayer().getLocation().getY() > 9000 && !PDungeoneering.gotRock;
 	}
 
 	public void execute() {
 		//System.out.println("Getting Rock");
 		try{
-		if(!Pdungeoneering.equipped){
+		if(!PDungeoneering.equipped){
 			Time.sleep(4800);
 			if(Inventory.getItems().length >= 0){
 				//if(Inventory.getItems()[0].getSlot() > 3){
-				//	Pdungeoneering.equipped = true;
+				//	PDungeoneering.equipped = true;
 				//} else {
 					for(int i=0; i < 4; i++){
 						if(Inventory.getItems()[i] != null){
@@ -31,7 +31,7 @@ public class GetRock implements Strategy {
 								//Time.sleep(200);
 							}
 						}
-						Pdungeoneering.equipped = true;
+						PDungeoneering.equipped = true;
 					}
 					Menu.sendAction(1500, 23494656, 488, 267, 1434, 5);
 				//}
@@ -42,7 +42,7 @@ public class GetRock implements Strategy {
 			Menu.sendAction(502, 1168906693, 69, 51, 5808, 4);//Obtain rock from wall
 			Time.sleep(new SleepCondition(){
 				public boolean isValid() {
-					return Inventory.contains(Pdungeoneering.ROCK_ID);
+					return Inventory.contains(PDungeoneering.ROCK_ID);
 				}
 			},6000);
 		} else {
@@ -50,22 +50,22 @@ public class GetRock implements Strategy {
 				Walking.walkTo(new Tile(2615,9805));
 				Time.sleep(1800);
 			} else {
-				Walking.walkTo(Pdungeoneering.ROCK_TILE);
+				Walking.walkTo(PDungeoneering.ROCK_TILE);
 				Time.sleep(new SleepCondition(){
 					public boolean isValid() {
-						return Pdungeoneering.ROCK_TILE.distanceTo() < 2;
+						return PDungeoneering.ROCK_TILE.distanceTo() < 2;
 					}
 				},3600);
 			}
 		}
-		if(Inventory.contains(Pdungeoneering.ROCK_ID))
-			Pdungeoneering.gotRock = true;
+		if(Inventory.contains(PDungeoneering.ROCK_ID))
+			PDungeoneering.gotRock = true;
 		}catch(Exception e){System.out.print(e);}
 	}
 
 	/*public boolean canSeeSculpture(){
 		for(SceneObject obj : SceneObjects.getAllSceneObjects()){
-			if(obj.getId() == Pdungeoneering.SCULPTURE_ID && obj.getLocation() == Pdungeoneering.ROCK_TILE)
+			if(obj.getId() == PDungeoneering.SCULPTURE_ID && obj.getLocation() == PDungeoneering.ROCK_TILE)
 				return true;
 		}
 		return false;
