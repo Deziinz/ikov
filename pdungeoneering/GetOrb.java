@@ -9,7 +9,7 @@ import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.methods.Walking;
 import org.rev317.min.api.wrappers.Tile;
 
-public class getOrb implements Strategy {
+public class GetOrb implements Strategy {
 
 	public boolean activate() {
 		return ((PDungeoneering.gotRock
