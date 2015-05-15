@@ -13,10 +13,10 @@ public class ToPortal implements Strategy {
 
 	public boolean activate() {
 		try{
-		return Players.getMyPlayer().getLocation().getY() < 2620 
+			return Players.getMyPlayer().getLocation().getY() < 2620 
 				&& Npcs.getNearest(PPestcontrol.PORTAL_IDS[PPestcontrol.randomizedPath]).length == 0
 				&& PPestcontrol.PORTAL_TILES[PPestcontrol.randomizedPath].distanceTo() > 10;
-		}catch(Exception e){
+		}catch(NullPointerException e){
 			//System.out.println("This nasty nullpointer kept me busy for a while.^");
 		};
 		return false;
