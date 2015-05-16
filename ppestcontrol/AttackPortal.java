@@ -28,7 +28,7 @@ public class AttackPortal implements Strategy {
 					public boolean isValid() {
 						return Players.getMyPlayer().isInCombat()
 								|| Npcs.getNearest(PPestcontrol.PORTAL_IDS[PPestcontrol.randomizedPath]).length == 0
-								|| Players.getMyPlayer().getY() > 2620;
+								|| Players.getMyPlayer().getLocation().getY() > 2620;
 					}
 				},6000);
 			}
@@ -42,7 +42,7 @@ public class AttackPortal implements Strategy {
 					Time.sleep(new SleepCondition(){
 						public boolean isValid() {
 							return Players.getMyPlayer().isInCombat()
-									|| Players.getMyPlayer().getY() > 2620;
+									|| Players.getMyPlayer().getLocation().getY() > 2620;
 						}
 					},6000);
 				}
