@@ -18,6 +18,7 @@ public class StartDungeon implements Strategy {
 		PDungeoneering.gotRock = false;
 		PDungeoneering.gotOrb = false;
 		PDungeoneering.equipped = false;
+		PDungeoneering.nulledBossCheck = 0;
 		if(Game.getOpenBackDialogId() == 2469){
 			Menu.sendAction(315, 794558464, 55, 2472, 48496, 1);//Second option dung chatbox
 			Time.sleep(new SleepCondition(){

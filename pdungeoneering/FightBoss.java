@@ -8,11 +8,10 @@ import org.rev317.min.api.methods.Npcs;
 import org.rev317.min.api.wrappers.Npc;
 
 public class FightBoss implements Strategy {
-	private int nulledBossCheck = 0;
 	
 	public boolean activate() {
 		for(int i = 0; i < PDungeoneering.BOSS_IDS.length; i++){
-			if (Npcs.getNearest(PDungeoneering.BOSS_IDS[i]) != null){
+			if (Npcs.getNearest(PDungeoneering.BOSS_IDS[i]) != null && !PDungeoneering.nulledBoss){
 				return true;
 			}
 		}
@@ -36,21 +35,21 @@ public class FightBoss implements Strategy {
 							}
 						},3600);
 					}
-					nulledBossCheck = 0;
+					PDungeoneering.nulledBossCheck = 0;
 					//System.out.println("Boss: "+i+" ("+PDungeoneering.BOSS_IDS[i]+ ") "+boss.getLocation()+" animation: "+boss.getAnimation() + "  Health: "+boss.getHealth()+"%");
 				}
 			}
 		}catch(Exception e){
 			if(e.getMessage().contains("0")){
 				//System.out.println("Possible nulled boss? ArrayIndex 0 error");
-				nulledBossCheck ++;
+				PDungeoneering.nulledBossCheck ++;
 			}
 			Time.sleep(600);
 		}
-		if(nulledBossCheck > 10){
-			nulledBossCheck = 0;
+		if(PDungeoneering.nulledBossCheck > 10){
+			PDungeoneering.nulledBoss = true;
 			System.out.println("BOSS NULLED - QUITTING DUNGEON");
-			Menu.sendAction(315, 5832704, 493, 16035, 356, 1);
+			//Menu.sendAction(315, 5832704, 493, 16035, 356, 1);//quit dung lose prestige
 			Time.sleep(600);
 		}
 	}

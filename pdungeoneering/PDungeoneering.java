@@ -3,6 +3,8 @@ package ikov.pdungeoneering;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import org.parabot.environment.api.interfaces.Paintable;
@@ -10,6 +12,7 @@ import org.parabot.environment.scripts.Category;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.scripts.ScriptManifest;
 import org.parabot.environment.scripts.framework.Strategy;
+import org.rev317.min.Loader;
 import org.rev317.min.api.events.MessageEvent;
 import org.rev317.min.api.events.listeners.MessageListener;
 import org.rev317.min.api.methods.Skill;
@@ -23,7 +26,9 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
     public static boolean gotRock = false;
     public static boolean equipped = false;
 	public static boolean gotOrb = false;
+	public static boolean nulledBoss = false;
 
+	public static int nulledBossCheck = 0;
 	public static final int THOK_ID = 9713;
 	public static final int ROCK_ID = 1481;
 	public static final int ORB_ID = 6822;
@@ -49,6 +54,7 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
     	strategies.add(new GetRock());
     	strategies.add(new GetOrb());
     	strategies.add(new SummonBoss());
+    	strategies.add(new NulledBoss());
     	strategies.add(new FightBoss());
         provide(strategies);
         return true;
@@ -89,4 +95,17 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
 		if(msg.contains("new life"))
 			deathCount++;
 	}
+	
+	//Credits to Minimal for the forceLogout method.
+    public static void forceLogout(){
+        try {
+            Class<?> c = Loader.getClient().getClass();
+            Method m = c.getDeclaredMethod("am");
+            m.setAccessible(true);
+            m.invoke(Loader.getClient());
+        }
+        catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
 }
