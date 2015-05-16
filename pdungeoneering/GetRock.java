@@ -19,7 +19,7 @@ public class GetRock implements Strategy {
 		//System.out.println("Getting Rock");
 		try{
 		if(!PDungeoneering.equipped){
-			Time.sleep(4800);
+			Time.sleep(8400);
 			if(Inventory.getItems().length >= 0){
 				//if(Inventory.getItems()[0].getSlot() > 3){
 				//	PDungeoneering.equipped = true;

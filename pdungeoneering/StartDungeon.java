@@ -25,8 +25,7 @@ public class StartDungeon implements Strategy {
 				public boolean isValid() {
 					return Npcs.getNearest(PDungeoneering.THOK_ID).length == 0;
 				}
-			},1200);
-			Time.sleep(3600);
+			},2400);
 		} else {
 			Menu.sendAction(225, 1273, 0, 0, 48496, 4);//open start dung interface
 			Time.sleep(new SleepCondition(){

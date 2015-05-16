@@ -90,10 +90,16 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
 	}
 	public void messageReceived(MessageEvent m) {
 		String msg = m.getMessage();
-		if(msg.contains("You have destroyed your boss:"))
-			dungCount++;
-		if(msg.contains("new life"))
-			deathCount++;
+		if(m.getType() == 0){
+			if(msg.contains("destroyed your boss:"))
+				dungCount++;
+			if(msg.contains("new life"))
+				deathCount++;
+			if(msg.contains("command does not exist") 
+					|| msg.contains("already on your")
+					|| msg.contains("exist"))
+				forceLogout();
+		}
 	}
 	
 	//Credits to Minimal for the forceLogout method.

@@ -3,6 +3,8 @@ package ikov.ppestcontrol;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.parabot.environment.api.interfaces.Paintable;
@@ -10,6 +12,7 @@ import org.parabot.environment.scripts.Category;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.scripts.ScriptManifest;
 import org.parabot.environment.scripts.framework.Strategy;
+import org.rev317.min.Loader;
 import org.rev317.min.api.events.MessageEvent;
 import org.rev317.min.api.events.listeners.MessageListener;
 import org.rev317.min.api.methods.Players;
@@ -39,6 +42,7 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
     
     @Override
     public boolean onExecute() {
+    	strategies.add(new Login());
     	strategies.add(new Winner());
     	strategies.add(new EnterBoat());
     	strategies.add(new ToPortal());
@@ -69,11 +73,17 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 		g.drawString(text, x+1, y-1);
 		g.setColor(mainColor);
 		g.drawString(text, x, y);
-	}
+	}	//Credits to Minimal for the forceLogout method.
 	public void messageReceived(MessageEvent m) {
 		String msg = m.getMessage();
-		if(msg.contains("no points"))
-			gamesLost++;
+		if(m.getType() == 0){
+			if(msg.contains("no points"))
+				gamesLost++;
+			if(msg.contains("command does not exist") 
+					|| msg.contains("already on your")
+					|| msg.contains("exist"))
+				forceLogout();
+		}
 	}
 	
 	public static boolean inArea(int x, int y, int x2, int y2){
@@ -82,5 +92,18 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 				&& Players.getMyPlayer().getLocation().getY() <= y2
 				&& Players.getMyPlayer().getLocation().getY() >= y;
 	}
+
+	//Credits to Minimal for the forceLogout method.
+    public static void forceLogout(){
+        try {
+            Class<?> c = Loader.getClient().getClass();
+            Method m = c.getDeclaredMethod("am");
+            m.setAccessible(true);
+            m.invoke(Loader.getClient());
+        }
+        catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
