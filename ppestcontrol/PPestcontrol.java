@@ -80,9 +80,11 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 			if(msg.contains("no points"))
 				gamesLost++;
 			if(msg.contains("command does not exist") 
-					|| msg.contains("already on your")
-					|| msg.contains("exist"))
+					|| msg.contains("already on your")){
+				System.out.println(msg);
+				System.out.println("Client out of sync? Relogging.");
 				forceLogout();
+			}
 		}
 	}
 	

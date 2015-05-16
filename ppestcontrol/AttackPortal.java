@@ -16,14 +16,13 @@ public class AttackPortal implements Strategy {
 		return false;
 	}
 
-	@SuppressWarnings("deprecation")
 	public void execute() {
 		//System.out.println("AttackPortal");
 		if(Npcs.getNearest(PPestcontrol.PORTAL_IDS[PPestcontrol.randomizedPath]).length > 0){
 			//System.out.println("Finding Portal");
 			if(Npcs.getNearest(PPestcontrol.PORTAL_IDS[PPestcontrol.randomizedPath])[0] != null){
 				//System.out.println("Portal not null");
-				Npcs.getNearest(PPestcontrol.PORTAL_IDS[PPestcontrol.randomizedPath])[0].interact(1);
+				Npcs.getNearest(PPestcontrol.PORTAL_IDS[PPestcontrol.randomizedPath])[0].interact(Npcs.Option.ATTACK);
 				Time.sleep(new SleepCondition(){
 					public boolean isValid() {
 						return Players.getMyPlayer().isInCombat()
@@ -37,7 +36,7 @@ public class AttackPortal implements Strategy {
 			if(Npcs.getNearest(PPestcontrol.BRAWLER_ID).length > 0){
 				if(Npcs.getNearest(PPestcontrol.BRAWLER_ID)[0] != null){
 					//System.out.println("Brawler not null");
-					Npcs.getNearest(PPestcontrol.BRAWLER_ID)[0].interact(1);
+					Npcs.getNearest(PPestcontrol.BRAWLER_ID)[0].interact(Npcs.Option.ATTACK);
 					//System.out.println("Interacting with brawler");
 					Time.sleep(new SleepCondition(){
 						public boolean isValid() {

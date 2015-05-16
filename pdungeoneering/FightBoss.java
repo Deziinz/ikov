@@ -17,7 +17,6 @@ public class FightBoss implements Strategy {
 		return false;
 	}
 
-	@SuppressWarnings("deprecation")
 	public void execute() {
 		//System.out.println("Fighting boss");
 		try{
@@ -27,7 +26,7 @@ public class FightBoss implements Strategy {
 				if (Npcs.getNearest(PDungeoneering.BOSS_IDS)[i] != null){
 					final Npc boss = Npcs.getNearest(PDungeoneering.BOSS_IDS)[i];
 					if(!boss.isInCombat()){
-						boss.interact(1);
+						boss.interact(Npcs.Option.ATTACK);
 						Time.sleep(new SleepCondition(){
 							public boolean isValid() {
 								return boss.isInCombat() || Npcs.getNearest(PDungeoneering.THOK_ID).length > 0;
