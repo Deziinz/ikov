@@ -8,7 +8,7 @@ import org.rev317.min.api.methods.Game;
 import org.rev317.min.api.methods.Menu;
 import org.rev317.min.api.methods.Players;
 
-public class NulledBoss implements Strategy {
+public class Nulled implements Strategy {
 
 	public boolean activate() {
 		return PDungeoneering.nulledBoss 

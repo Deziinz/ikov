@@ -3,7 +3,6 @@ package ikov.pdungeoneering;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 import org.parabot.environment.scripts.framework.Strategy;
-import org.rev317.min.api.methods.Menu;
 import org.rev317.min.api.methods.Npcs;
 import org.rev317.min.api.wrappers.Npc;
 

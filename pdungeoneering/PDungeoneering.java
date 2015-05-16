@@ -50,11 +50,11 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
     	/*for(int i = 0; i < Skill.values().length; i++){
     		System.out.println(i+":"+Skill.values()[i]);
     	}*/
+    	strategies.add(new Nulled());
     	strategies.add(new StartDungeon());
     	strategies.add(new GetRock());
     	strategies.add(new GetOrb());
     	strategies.add(new SummonBoss());
-    	strategies.add(new NulledBoss());
     	strategies.add(new FightBoss());
         provide(strategies);
         return true;
