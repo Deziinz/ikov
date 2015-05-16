@@ -10,7 +10,7 @@ import org.rev317.min.api.methods.Game;
 public class Login implements Strategy {
 	@Override
 	public boolean activate() {
-		return Game.isLoggedIn();
+		return !Game.isLoggedIn();
 	}
 
 	@Override

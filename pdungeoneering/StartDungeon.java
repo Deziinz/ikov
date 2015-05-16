@@ -6,6 +6,7 @@ import org.parabot.environment.scripts.framework.Strategy;
 import org.rev317.min.api.methods.Game;
 import org.rev317.min.api.methods.Menu;
 import org.rev317.min.api.methods.Npcs;
+import org.rev317.min.api.methods.Players;
 
 public class StartDungeon implements Strategy {
 
@@ -26,6 +27,8 @@ public class StartDungeon implements Strategy {
 					return Npcs.getNearest(PDungeoneering.THOK_ID).length == 0;
 				}
 			},2400);
+			if(Players.getMyPlayer().getLocation().getY() > 9000)
+				Time.sleep(8400);
 		} else {
 			Menu.sendAction(225, 1273, 0, 0, 48496, 4);//open start dung interface
 			Time.sleep(new SleepCondition(){

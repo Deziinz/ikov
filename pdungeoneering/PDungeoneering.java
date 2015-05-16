@@ -95,6 +95,8 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
 				dungCount++;
 			if(msg.contains("new life"))
 				deathCount++;
+			if(msg.contains("start shortly"))
+				PDungeoneering.equipped = false;
 			if(msg.contains("command does not exist") 
 					|| msg.contains("already on your")
 					|| msg.contains("exist"))
