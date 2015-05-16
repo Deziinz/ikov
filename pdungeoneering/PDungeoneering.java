@@ -43,6 +43,7 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
 	private int deathCount = 0;
 	private int startExp = Skill.getCurrentExperience(23);
 	private long startTime = System.currentTimeMillis();
+	public static long dungTimer = System.currentTimeMillis();
 	
 	
     @Override

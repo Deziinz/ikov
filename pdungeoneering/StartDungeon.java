@@ -37,6 +37,6 @@ public class StartDungeon implements Strategy {
 				}
 			},6000);
 		}
+		PDungeoneering.dungTimer = System.currentTimeMillis();
 	}
-
 }

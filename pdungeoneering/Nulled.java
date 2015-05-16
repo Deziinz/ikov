@@ -12,7 +12,9 @@ public class Nulled implements Strategy {
 
 	public boolean activate() {
 		return PDungeoneering.nulledBoss 
-				|| !Game.isLoggedIn();
+				|| !Game.isLoggedIn()
+				|| (System.currentTimeMillis() - PDungeoneering.dungTimer > 300000 
+						&& Players.getMyPlayer().getLocation().getY() > 9000);
 	}
 
 	public void execute() {
