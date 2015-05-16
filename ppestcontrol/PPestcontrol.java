@@ -19,7 +19,6 @@ import org.rev317.min.api.wrappers.Tile;
 @ScriptManifest(author="Agrodon", category = Category.OTHER, description="Pest Control", name="PPestcontrol", servers={"ikov"}, version=0.1)
 public class PPestcontrol extends Script implements Paintable, MessageListener{
     private final ArrayList<Strategy> strategies = new ArrayList<Strategy>();
-    
     public static final String[] PORTAL_SIDES = {"West", "SouthWest", "SouthEast","East"};
     public static final int[] PORTAL_IDS = {6142,6145,6144,6143};
     public static final Tile[] PORTAL_TILES = {new Tile(2628,2592), 
@@ -78,10 +77,10 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 	}
 	
 	public static boolean inArea(int x, int y, int x2, int y2){
-		return Players.getMyPlayer().getX() <= x2
-				&& Players.getMyPlayer().getX() >= x
-				&& Players.getMyPlayer().getY() <= y2
-				&& Players.getMyPlayer().getY() >= y;
+		return Players.getMyPlayer().getLocation().getX() <= x2
+				&& Players.getMyPlayer().getLocation().getX() >= x
+				&& Players.getMyPlayer().getLocation().getY() <= y2
+				&& Players.getMyPlayer().getLocation().getY() >= y;
 	}
 
 }

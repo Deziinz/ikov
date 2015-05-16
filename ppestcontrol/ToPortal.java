@@ -23,7 +23,7 @@ public class ToPortal implements Strategy {
 		}
 
 	public void execute() {
-		//System.out.println("ToPortal");
+		System.out.println("ToPortal");
 		if(!PPestcontrol.praying){
 			Menu.sendAction(1500, 132, 0, 0,14308,2);
 			PPestcontrol.praying = true;
