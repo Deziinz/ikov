@@ -7,11 +7,14 @@ import org.parabot.environment.scripts.framework.Strategy;
 import org.rev317.min.api.methods.Menu;
 import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.methods.SceneObjects;
+import org.rev317.min.api.methods.Walking;
 import org.rev317.min.api.wrappers.SceneObject;
+import org.rev317.min.api.wrappers.Tile;
 
 public class EnterBoat implements Strategy {
 
 	public boolean activate() {
+		try{
 		if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID).length > 0){
 			if(SceneObjects.getNearest(PPestcontrol.GANGPLANK_ID)[0] != null){
 				if(!PPestcontrol.inArea(2658, 2637, 2665, 2643) 
@@ -19,6 +22,7 @@ public class EnterBoat implements Strategy {
 						return true;
 			}
 		}
+		}catch(Exception e){};
 		//return Players.getMyPlayer().getLocation().getY() == 2639 && Players.getMyPlayer().getLocation().getX() == 2657;
 		return false;
 	}
@@ -34,6 +38,10 @@ public class EnterBoat implements Strategy {
 						return PPestcontrol.inArea(2658, 2637, 2665, 2643);
 					}
 				},6000);
+				if(PPestcontrol.inArea(2658, 2637, 2665, 2643)){
+					Time.sleep(1800);
+					Walking.walkTo(new Tile(2660 + Random.between(0, 4), 2638 + Random.between(0, 6)));
+				}
 				PPestcontrol.randomizedPath = Random.between(0, 4);
 				if(Random.between(0, 2)==1
 						&&!PPestcontrol.praying){
