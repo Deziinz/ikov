@@ -23,7 +23,7 @@ public class ToPortal implements Strategy {
 		}
 
 	public void execute() {
-		System.out.println("ToPortal");
+		//System.out.println("ToPortal");
 		if(!PPestcontrol.praying){
 			Menu.sendAction(1500, 132, 0, 0,14308,2);
 			PPestcontrol.praying = true;
@@ -32,7 +32,7 @@ public class ToPortal implements Strategy {
 			Walking.walkTo(PPestcontrol.CENTER_TILE);
 			Time.sleep(new SleepCondition(){
 				public boolean isValid() {
-					return Players.getMyPlayer().getLocation().getY() < 2595;
+					return Players.getMyPlayer().getLocation().getY() < 2600;
 				}
 			},6000);
 		} else {

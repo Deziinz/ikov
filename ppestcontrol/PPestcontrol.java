@@ -25,7 +25,7 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
     											new Tile(2645,2570),
     											new Tile(2669,2571),
     											new Tile(2680,2590)};
-    public static final Tile CENTER_TILE = new Tile(2656, 2590);
+    public static final Tile CENTER_TILE = new Tile(2656, 2595);
     public static final int GANGPLANK_ID = 14315;
     public static final int BRAWLER_ID = 3776;
     
