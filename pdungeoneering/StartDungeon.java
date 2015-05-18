@@ -11,7 +11,9 @@ import org.rev317.min.api.methods.Players;
 public class StartDungeon implements Strategy {
 
 	public boolean activate() {
-		return Npcs.getNearest(PDungeoneering.THOK_ID).length > 0 || Game.getOpenBackDialogId() == 2469 ; 
+		try{
+		return Npcs.getNearest(PDungeoneering.THOK_ID).length > 0 || Game.getOpenBackDialogId() == 2469 ;
+		}catch(Exception e){return false;}
 	}
 
 	public void execute() {

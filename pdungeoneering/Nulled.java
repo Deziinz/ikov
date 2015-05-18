@@ -25,7 +25,7 @@ public class Nulled implements Strategy {
 			System.out.println("Forcefully logging out.");
 			PDungeoneering.forceLogout();
 		}
-		Time.sleep(3000);
+		Time.sleep(5000);
 	}
 
 
