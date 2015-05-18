@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.parabot.environment.api.interfaces.Paintable;
+import org.parabot.environment.api.utils.Timer;
 import org.parabot.environment.scripts.Category;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.scripts.ScriptManifest;
@@ -37,6 +38,7 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
     public static long lastWin = 0;
     public static int gamesWon = 0;
     public static int gamesLost = 0;
+    private Timer runTime = new Timer();
     public long startTime = System.currentTimeMillis();
 
     
@@ -54,24 +56,21 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
     public void onFinish() {
     }
 	public void paint(Graphics g) {
+		int y = 415;
+		Color white = Color.white;
+		Color black = Color.black;
 	    Graphics2D g2 = (Graphics2D)g;
-	    long millis = System.currentTimeMillis() - startTime;
-	    int winsHr = (int) (gamesWon*1*3600000.0D/millis);
-	    //int lostHr = (int) (gamesLost*3600000.0D/millis);
-	    long hours = millis / 3600000L;
-	    millis -= hours * 3600000L;
-	    long minutes = millis / 60000L;
-	    millis -= minutes * 60000L;
-	    long seconds = millis / 1000L;
-		shadowedString(g2,"Runtime: "+hours+":"+minutes+":"+seconds, 560,415, Color.white);
+		int winsHr = (int) ((int)gamesWon*3600000.0D/runTime.getElapsedTime());
+		shadowedString(g,"Runtime: "+runTime.toString(), 560, y, white, black);
+		//shadowedString(g2,"Runtime: "+hours+":"+minutes+":"+seconds, 560,415, Color.white);
 		//shadowedString(g2,"Wins(/hr): "+gamesWon+" ("+winsHr+")", 560, 415, Color.white);
-		shadowedString(g2,"Points(/hr): "+gamesWon*10+" ("+winsHr*10+")", 560, 430, Color.white);
-		shadowedString(g2,"PPestcontrol",650,463, Color.white);
+		shadowedString(g2,"Points(/hr): "+gamesWon*10+" ("+winsHr*10+")", 560, y+15, white, black);
+		shadowedString(g2,"PPestcontrol",650,463, white, black);
 		}
-	public void shadowedString(Graphics g, String text, int x, int y, Color mainColor){
-		g.setColor(Color.black);
+	public void shadowedString(Graphics g, String text, int x, int y, Color front, Color back){
+		g.setColor(back);
 		g.drawString(text, x+1, y-1);
-		g.setColor(mainColor);
+		g.setColor(front);
 		g.drawString(text, x, y);
 	}	//Credits to Minimal for the forceLogout method.
 	public void messageReceived(MessageEvent m) {
