@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import org.parabot.environment.api.interfaces.Paintable;
+import org.parabot.environment.api.utils.Timer;
 import org.parabot.environment.scripts.Category;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.scripts.ScriptManifest;
@@ -42,9 +43,8 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
 	private int dungCount = 0;
 	private int deathCount = 0;
 	private int startExp = Skill.getCurrentExperience(23);
-	private long startTime = System.currentTimeMillis();
+	private Timer runTime = new Timer();
 	public static long dungTimer = System.currentTimeMillis();
-	
 	
     @Override
     public boolean onExecute() {
@@ -65,18 +65,12 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
     }
     
 	public void paint(Graphics g) {
-	    long millis = System.currentTimeMillis() - startTime;
-	    int deathHr = (int) (deathCount*3600000.0D/millis);
+	    int deathHr = (int) (deathCount*3600000.0D/runTime.getElapsedTime());
 	    int expGained = Skill.getCurrentExperience(23)-startExp;
-	    int expHr = (int) (expGained*3600000.0D/millis);
-	    int dungHr = (int) (dungCount*3600000.0D/millis);
-	    long hours = millis / 3600000L;
-	    millis -= hours * 3600000L;
-	    long minutes = millis / 60000L;
-	    millis -= minutes * 60000L;
-	    long seconds = millis / 1000L;
+	    int expHr = (int) (expGained*3600000.0D/runTime.getElapsedTime());
+	    int dungHr = (int) (dungCount*3600000.0D/runTime.getElapsedTime());
 	    Graphics2D g2 = (Graphics2D)g;
-		shadowedString(g2,"Runtime: "+hours+":"+minutes+":"+seconds, 560,400);
+		shadowedString(g2,"Runtime: "+runTime.toString(), 560,400);
 		shadowedString(g2,"Deaths(/hr): "+deathCount+"("+deathHr+")", 560, 415);
 		shadowedString(g2,"Dungeons(/hr): "+dungCount+"("+dungHr+")", 560, 430);
 		shadowedString(g2,"Exp gained(/hr): "+ (expGained<100000 ? expGained : expGained/1000 + "k")+"("+(expHr<100000 ? expHr : expHr/1000 + "k")+")", 560, 445);
@@ -89,6 +83,7 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
 		g.setColor(Color.white);
 		g.drawString(text, x, y);
 	}
+	
 	public void messageReceived(MessageEvent m) {
 		String msg = m.getMessage();
 		if(m.getType() == 0){
