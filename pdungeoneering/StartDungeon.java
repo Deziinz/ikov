@@ -26,7 +26,9 @@ public class StartDungeon implements Strategy {
 			Menu.sendAction(315, 794558464, 55, 2472, 48496, 1);//Second option dung chatbox
 			Time.sleep(new SleepCondition(){
 				public boolean isValid() {
+					try{
 					return Npcs.getNearest(PDungeoneering.THOK_ID).length == 0;
+					}catch(Exception e){return false;}
 				}
 			},2400);
 			if(Players.getMyPlayer().getLocation().getY() > 9000)
