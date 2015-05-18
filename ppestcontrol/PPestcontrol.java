@@ -39,9 +39,7 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
     public static int gamesWon = 0;
     public static int gamesLost = 0;
     private Timer runTime = new Timer();
-    public long startTime = System.currentTimeMillis();
 
-    
     @Override
     public boolean onExecute() {
     	strategies.add(new Login());
@@ -52,9 +50,11 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
         provide(strategies);
         return true;
     }
+    
     @Override
     public void onFinish() {
     }
+    
 	public void paint(Graphics g) {
 		int y = 415;
 		Color white = Color.white;
@@ -72,7 +72,8 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 		g.drawString(text, x+1, y-1);
 		g.setColor(front);
 		g.drawString(text, x, y);
-	}	//Credits to Minimal for the forceLogout method.
+	}
+
 	public void messageReceived(MessageEvent m) {
 		String msg = m.getMessage();
 		if(m.getType() == 0){
@@ -95,16 +96,15 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 	}
 
 	//Credits to Minimal for the forceLogout method.
-    public static void forceLogout(){
-        try {
-            Class<?> c = Loader.getClient().getClass();
-            Method m = c.getDeclaredMethod("am");
+	public static void forceLogout(){
+		try {
+			Class<?> c = Loader.getClient().getClass();
+			Method m = c.getDeclaredMethod("am");
             m.setAccessible(true);
             m.invoke(Loader.getClient());
-        }
-        catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+		}
+		catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        	e.printStackTrace();
         }
     }
-
 }
