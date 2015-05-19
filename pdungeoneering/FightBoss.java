@@ -29,7 +29,15 @@ public class FightBoss implements Strategy {
 						boss.interact(Npcs.Option.ATTACK);
 						Time.sleep(new SleepCondition(){
 							public boolean isValid() {
-								return boss.isInCombat() || Npcs.getNearest(PDungeoneering.THOK_ID).length > 0;
+								if(boss != null){
+									if (boss.isInCombat())
+										return true;
+								}
+								if (Npcs.getNearest(PDungeoneering.THOK_ID) != null){
+									if(Npcs.getNearest(PDungeoneering.THOK_ID).length > 0)
+										return true;
+								}
+								return false;
 							}
 						},3600);
 					}
