@@ -30,12 +30,15 @@ public class GetRock implements Strategy {
 								//Time.sleep(200);
 							}
 						}
-						PDungeoneering.equipped = true;
 					}
-					Menu.sendAction(1500, 23494656, 488, 267, 1434, 5);
+					Menu.sendAction(1500, 23494656, 488, 267, 1434, 5);//toggle quick pray
 				//}
 			}
 			Time.sleep(600);
+			if(Inventory.getItems().length > 3){
+				if(Inventory.getItems()[3].getSlot() > 3)
+					PDungeoneering.equipped = true;
+			}
 		}
 		if(Players.getMyPlayer().getLocation().getY() > 9820){
 			Menu.sendAction(502, 1168906693, 69, 51, 5808, 4);//Obtain rock from wall
