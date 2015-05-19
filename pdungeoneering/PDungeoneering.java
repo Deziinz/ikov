@@ -95,7 +95,8 @@ public class PDungeoneering extends Script implements Paintable, MessageListener
 				PDungeoneering.equipped = false;
 			if(msg.contains("command does not exist") 
 					|| msg.contains("already on your")
-					|| msg.contains("exist"))
+					|| msg.contains("exist")
+					|| msg.contains("Unable to receive input"))
 				forceLogout();
 		}
 	}

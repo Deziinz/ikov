@@ -9,11 +9,13 @@ import org.rev317.min.api.wrappers.Npc;
 public class FightBoss implements Strategy {
 	
 	public boolean activate() {
-		for(int i = 0; i < PDungeoneering.BOSS_IDS.length; i++){
-			if (Npcs.getNearest(PDungeoneering.BOSS_IDS[i]) != null && !PDungeoneering.nulledBoss){
-				return true;
+		try{
+			for(int i = 0; i < PDungeoneering.BOSS_IDS.length; i++){
+				if (Npcs.getNearest(PDungeoneering.BOSS_IDS[i]) != null && !PDungeoneering.nulledBoss){
+					return true;
+				}
 			}
-		}
+		}catch(Exception e){}
 		return false;
 	}
 
@@ -46,9 +48,11 @@ public class FightBoss implements Strategy {
 				}
 			}
 		}catch(Exception e){
-			if(e.getMessage().contains("0")){
-				//System.out.println("Possible nulled boss? ArrayIndex 0 error");
-				PDungeoneering.nulledBossCheck ++;
+			if(e.getMessage() != null){//No idea why this should occure, though.
+				if(e.getMessage().contains("0")){
+					//System.out.println("Possible nulled boss? ArrayIndex 0 error");
+					PDungeoneering.nulledBossCheck ++;
+				}
 			}
 			Time.sleep(600);
 		}
