@@ -4,7 +4,6 @@ import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 import org.parabot.environment.scripts.framework.Strategy;
 import org.rev317.min.api.methods.Npcs;
-import org.rev317.min.api.wrappers.Npc;
 
 public class FightBoss implements Strategy {
 	
@@ -20,20 +19,20 @@ public class FightBoss implements Strategy {
 	}
 
 	public void execute() {
-		//System.out.println("Fighting boss");
+		//System.out.println("Fighting Npcs.getNearest(PDungeoneering.BOSS_IDS)[i]");
 		try{
 			//if(Npcs.getNearest().length > 0)
 			//	System.out.println("Nearest NPC: "+Npcs.getNearest()[0].getLocation());
 			for(int i = 0; i < PDungeoneering.BOSS_IDS.length; i++){
+				final int iReplica = i;
 				if (Npcs.getNearest(PDungeoneering.BOSS_IDS)[i] != null){
-					final Npc boss = Npcs.getNearest(PDungeoneering.BOSS_IDS)[i];
-					if(!boss.isInCombat()){
-						if(boss != null){
-							boss.interact(Npcs.Option.ATTACK);
+					if(!Npcs.getNearest(PDungeoneering.BOSS_IDS)[i].isInCombat()){
+						if(Npcs.getNearest(PDungeoneering.BOSS_IDS)[i] != null){
+							Npcs.getNearest(PDungeoneering.BOSS_IDS)[i].interact(Npcs.Option.ATTACK);
 							Time.sleep(new SleepCondition(){
 								public boolean isValid() {
-									if(boss != null){
-										if (boss.isInCombat())
+									if(Npcs.getNearest(PDungeoneering.BOSS_IDS)[iReplica] != null){
+										if (Npcs.getNearest(PDungeoneering.BOSS_IDS)[iReplica].isInCombat())
 											return true;
 									}
 									if (Npcs.getNearest(PDungeoneering.THOK_ID) != null){
@@ -46,12 +45,12 @@ public class FightBoss implements Strategy {
 						}
 					}
 					PDungeoneering.nulledBossCheck = 0;
-					//System.out.println("Boss: "+i+" ("+PDungeoneering.BOSS_IDS[i]+ ") "+boss.getLocation()+" animation: "+boss.getAnimation() + "  Health: "+boss.getHealth()+"%");
+					//System.out.println("Boss: "+i+" ("+PDungeoneering.BOSS_IDS[i]+ ") "+Npcs.getNearest(PDungeoneering.BOSS_IDS)[i].getLocation()+" animation: "+Npcs.getNearest(PDungeoneering.BOSS_IDS)[i].getAnimation() + "  Health: "+Npcs.getNearest(PDungeoneering.BOSS_IDS)[i].getHealth()+"%");
 				}
 			}
 		}catch(Exception e){
 			if(e.getMessage().contains("0")){
-				//System.out.println("Possible nulled boss? ArrayIndex 0 error");
+				//System.out.println("Possible nulled Npcs.getNearest(PDungeoneering.BOSS_IDS)[i]? ArrayIndex 0 error");
 				PDungeoneering.nulledBossCheck ++;
 			}
 			Time.sleep(600);
