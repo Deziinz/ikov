@@ -19,7 +19,14 @@ public class GetRock implements Strategy {
 		//System.out.println("Getting Rock");
 		try{
 		if(!PDungeoneering.equipped){
-			if(Inventory.getItems().length >= 0){
+			if(Inventory.getItems().length > 2){
+				if(Inventory.getItems()[2] != null){
+					//System.out.println("[2] is in slot"+Inventory.getItems()[2].getSlot());
+					if(Inventory.getItems()[2].getSlot() > 3)
+						PDungeoneering.equipped = true;
+				}
+			}
+			if(Inventory.getItems().length >= 0 && PDungeoneering.equipped == false){
 				//if(Inventory.getItems()[0].getSlot() > 3){
 				//	PDungeoneering.equipped = true;
 				//} else {
@@ -35,10 +42,6 @@ public class GetRock implements Strategy {
 				//}
 			}
 			Time.sleep(600);
-			if(Inventory.getItems().length > 3){
-				if(Inventory.getItems()[3].getSlot() > 3)
-					PDungeoneering.equipped = true;
-			}
 		}
 		if(Players.getMyPlayer().getLocation().getY() > 9820){
 			Menu.sendAction(502, 1168906693, 69, 51, 5808, 4);//Obtain rock from wall
@@ -62,7 +65,9 @@ public class GetRock implements Strategy {
 		}
 		if(Inventory.contains(PDungeoneering.ROCK_ID))
 			PDungeoneering.gotRock = true;
-		}catch(Exception e){System.out.print(e);}
+		}
+		catch(Exception e){System.out.print(e);}
+		Time.sleep(600);
 	}
 
 	/*public boolean canSeeSculpture(){
