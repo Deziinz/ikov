@@ -22,7 +22,10 @@ public class Nulled implements Strategy {
 			PDungeoneering.nulledBoss = false;
 			PDungeoneering.nulledBossCheck = 0;
 		} else if ( Players.getMyPlayer().getLocation().getY() > 9000){
-			System.out.println("Forcefully logging out.");
+			if(System.currentTimeMillis() - PDungeoneering.dungTimer > 300000)
+				System.out.println("Dungeon took over 5 minutes, logging out.");
+			if(PDungeoneering.nulledBoss)
+				System.out.println("Boss nulled, logging out.");
 			PDungeoneering.forceLogout();
 		}
 		Time.sleep(5000);
