@@ -19,27 +19,28 @@ public class GetRock implements Strategy {
 		//System.out.println("Getting Rock");
 		try{
 		if(!PDungeoneering.equipped){
+			//System.out.println("Inventory length: "+Inventory.getItems().length);
 			if(Inventory.getItems().length > 2){
 				if(Inventory.getItems()[2] != null){
-					//System.out.println("[2] is in slot"+Inventory.getItems()[2].getSlot());
-					if(Inventory.getItems()[2].getSlot() > 3)
+					//System.out.println("[2] is in slot "+Inventory.getItems()[2].getSlot());
+					if(Inventory.getItems()[2].getSlot() > 2)
 						PDungeoneering.equipped = true;
 				}
 			}
 			if(Inventory.getItems().length >= 0 && PDungeoneering.equipped == false){
-				//if(Inventory.getItems()[0].getSlot() > 3){
-				//	PDungeoneering.equipped = true;
-				//} else {
-					for(int i=0; i < 4; i++){
+				//System.out.println("Equipping items");
+				for(int i=0; i < 4; i++){
+					if(Inventory.getItems().length > i){
 						if(Inventory.getItems()[i] != null){
 							if(Inventory.getItems()[i].getSlot() <= 4){
 								Menu.sendAction(454, Inventory.getItems()[i].getId()-1, i, 3214, 1434,5);
 								//Time.sleep(200);
-							}
+								}
 						}
 					}
-					Menu.sendAction(1500, 23494656, 488, 267, 1434, 5);//toggle quick pray
-				//}
+				}
+				Menu.sendAction(1500, 23494656, 488, 267, 1434, 5);//toggle quick pray
+				Time.sleep(600);
 			}
 			Time.sleep(600);
 		}
@@ -52,7 +53,7 @@ public class GetRock implements Strategy {
 			},6000);
 		} else {
 			if(Players.getMyPlayer().getLocation().getY() < 9803){
-				Walking.walkTo(new Tile(2615,9805));
+				Walking.walkTo(new Tile(2612,9810));
 				Time.sleep(1800);
 			} else {
 				Walking.walkTo(PDungeoneering.ROCK_TILE);
@@ -65,8 +66,9 @@ public class GetRock implements Strategy {
 		}
 		if(Inventory.contains(PDungeoneering.ROCK_ID))
 			PDungeoneering.gotRock = true;
+		}catch(Exception e){
+			System.out.print(e);
 		}
-		catch(Exception e){System.out.print(e);}
 		Time.sleep(600);
 	}
 
