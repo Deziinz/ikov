@@ -22,7 +22,7 @@ public class ToLocation implements Strategy {
 	@Override
 	public void execute() {
 		PFiremaker.state = "Walking to location";
-		//System.out.println("Walking to tile");
+		System.out.println("Walking to tile");
 		PFiremaker.findTile = true;
 		if(PFiremaker.LOCATION_TILE[PFiremaker.locChoice].distanceTo() < 30){
 			Walking.walkTo(PFiremaker.LOCATION_TILE[PFiremaker.locChoice]);
