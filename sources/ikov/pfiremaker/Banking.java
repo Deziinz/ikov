@@ -32,6 +32,10 @@ public class Banking implements Strategy {
 				}
 			}
 		}
+		if(PFiremaker.findBankSlot(PFiremaker.LOG_ID[PFiremaker.logChoice]) == -1){
+			System.out.println("Out of logs, stopping script");
+			PFiremaker.stopScript = true;
+		}
 		if(Inventory.getCount() > 1 || !Inventory.contains(PFiremaker.TINDERBOX_ID))
 			Bank.depositAllExcept(PFiremaker.TINDERBOX_ID);
 		if(!Inventory.contains(PFiremaker.TINDERBOX_ID))
