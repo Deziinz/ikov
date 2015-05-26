@@ -25,7 +25,6 @@ import org.rev317.min.api.methods.Skill;
 import org.rev317.min.api.wrappers.SceneObject;
 import org.rev317.min.api.wrappers.Tile;
 
-
 @ScriptManifest(author="Agrodon", category = Category.FIREMAKING, description="Let's burn down the world!", name="PFiremaker", servers={"ikov"}, version=1.0)
 public class PFiremaker extends Script implements Paintable, MessageListener{
 	private final ArrayList<Strategy> strategies = new ArrayList<Strategy>();
