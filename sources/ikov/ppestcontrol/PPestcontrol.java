@@ -100,7 +100,7 @@ public class PPestcontrol extends Script implements Paintable, MessageListener{
 	public static void forceLogout(){
 		try {
 			Class<?> c = Loader.getClient().getClass();
-			Method m = c.getDeclaredMethod("am");
+			Method m = c.getDeclaredMethod("W");
             m.setAccessible(true);
             m.invoke(Loader.getClient());
 		}
